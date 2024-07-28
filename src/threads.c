@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:14:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/28 21:27:32 by saandria         ###   ########.fr       */
+/*   Updated: 2024/07/28 21:51:47 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char *av[])
 		pthread_join(threads[i], NULL);
 		i++;
 	}
-	printf("\033[1;93mCOMPLETED\033[0m\n");
+	printf("\033[1;91mCOMPLETED\033[0m\n");
 	free(threads);
 	pthread_exit(NULL);
 }
