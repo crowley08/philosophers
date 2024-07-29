@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/29 14:36:41 by saandria         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:27:01 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	*to_do(void *p)
 {
 	t_philo	*tid;
+	pthread_mutex_t	mutex;
 
 	tid = (t_philo *)p;
 	printf("\033[1;12m%d is \033[0m", tid->id);
