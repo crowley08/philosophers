@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:14:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/29 16:27:04 by saandria         ###   ########.fr       */
+/*   Updated: 2024/07/29 22:38:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,25 @@ int	main(int ac, char *av[])
 		t_num = atoi(av[1]);
 	else
 		return (0);
-	p.threads = malloc(sizeof(pthread_t) * (t_num));
-	p.id = 1;
+	p.threads = malloc(sizeof(pthread_t) * (t_num + 1));
+	p.mutex = malloc(sizeof(pthread_mutex_t) * (t_num + 1));
+	p.id = 0;
 	i = 0;
-	while (1)
+	while (i < t_num)
 	{
-		while (i < t_num)
-		{
-			pthread_create(&p.threads[i], NULL, to_do, &p);
-			pthread_join(p.threads[i], NULL);
-			i++;
-			p.id++;
-		}
+		pthread_mutex_init(&p.mutex[i], NULL);
+		pthread_create(&p.threads[i], NULL, to_do, &p);
+		i++;
+		p.id++;
 	}
-	printf("\033[1;91mCOMPLETED\033[0m\n");
+	i = 0;
+	while (i < t_num)
+	{
+		pthread_join(p.threads[i], NULL);
+		pthread_mutex_destroy(&p.mutex[i]);
+		i++;
+	}
 	free(p.threads);
+	free(p.mutex);
 	pthread_exit(NULL);
 }
