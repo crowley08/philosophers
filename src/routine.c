@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/30 14:59:56 by saandria         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:57:21 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*to_do(void *p)
 		pthread_mutex_lock(&tid->mutex);
 		ph_sleep(tid);
 		printf("\033[1;3m%ld %d is %s\n\033[0m", tid->time, tid->id, tid->stat);
-		usleep(1);
+		sleep(1);
 		pthread_mutex_unlock(&tid->mutex);
 		tid->time--;
 	}
