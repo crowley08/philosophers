@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/29 22:25:58 by saandria         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:59:30 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
 # include <stdio.h>
 # include <unistd.h>
 
-typedef	struct s_philo
+typedef struct s_philo
 {
-	pthread_t	*threads;
-	pthread_mutex_t	*mutex;
-	char		*status;
-	int			id;
-	int			forks;
-}				t_philo;
+	pthread_t		threads;
+	pthread_mutex_t	mutex;
+	char			*stat;
+	int				id;
+	int				eaten;
+	long			time;
+}					t_philo;
 
-/*
-typedef	struct s_table
+typedef struct s_table
 {
-	t_philo	*ph;
+//	pthread_mutex_t	*forks;
+	t_philo	*p;
 }			t_table;
-*/
 
 void	*to_do(void *p);
 void	ph_think(t_philo *p);

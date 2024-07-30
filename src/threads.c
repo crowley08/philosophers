@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:14:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/29 23:34:18 by saandria         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:01:18 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char *av[])
 {
-	t_philo			p;
+	t_table		table;
 	int			t_num;
 	int			i;
 
@@ -22,25 +22,28 @@ int	main(int ac, char *av[])
 		t_num = atoi(av[1]);
 	else
 		return (0);
-	p.threads = malloc(sizeof(pthread_t) * (t_num + 1));
-	p.mutex = malloc(sizeof(pthread_mutex_t) * (t_num + 1));
-	p.id = 0;
+	table.p = malloc(sizeof(t_philo) * t_num);
 	i = 0;
 	while (i < t_num)
 	{
-		pthread_mutex_init(&p.mutex[i], NULL);
-		pthread_create(&p.threads[i], NULL, to_do, &p);
+		pthread_mutex_init(&table.p[i].mutex, NULL);
+		table.p[i].id = i + 1;
 		i++;
-		p.id++;
 	}
 	i = 0;
 	while (i < t_num)
 	{
-		pthread_join(p.threads[i], NULL);
-		pthread_mutex_destroy(&p.mutex[i]);
+		pthread_create(&table.p[i].threads, NULL, to_do, &table.p[i]);
+		table.p[i].time = atol(av[2]);
 		i++;
 	}
-	free(p.threads);
-	free(p.mutex);
+	i = 0;
+	while (i < t_num)
+	{
+		pthread_join(table.p[i].threads, NULL);
+		pthread_mutex_destroy(&table.p[i].mutex);
+		i++;
+	}
+	free(table.p);
 	pthread_exit(NULL);
 }
