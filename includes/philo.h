@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/02 23:59:05 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 00:24:52 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_philo
 	pthread_mutex_t	mutex;
 	char			*stat;
 	int				id;
-	int				left_fork;
-	int				right_fork;
+	int				left;
+	int				right;
 	int				eaten;
 	t_table			*ta;
 	t_time			t;

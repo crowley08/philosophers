@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:14:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/02 23:55:48 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 00:24:42 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ void	ph_threads(t_table *table, char *av[])
 		pthread_mutex_init(&table->p[i].mutex, NULL);
 		pthread_mutex_init(&table->forks[i], NULL);
 		table->p[i].id = i + 1;
-		table->p[i].left_fork = i;
-		table->p[i].right_fork = (i + 1) % table->p_num;
+		table->p[i].left = i;
+		table->p[i].right = (i + 1) % table->p_num;
 		table->p[i].ta = table;
+		table->p[i].eaten = 0;
 		i++;
 	}
 	i = 0;
