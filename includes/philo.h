@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/30 17:22:04 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:42:55 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <stdio.h>
 # include <unistd.h>
 
+typedef struct s_time
+{
+	long	to_die;
+	long	to_eat;
+	long	to_sleep;
+}			t_time;
+
 typedef struct s_philo
 {
 	pthread_t		threads;
@@ -26,13 +33,13 @@ typedef struct s_philo
 	char			*stat;
 	int				id;
 	int				eaten;
-	long			time;
+	t_time			t;
 }					t_philo;
 
 typedef struct s_table
 {
-//	pthread_mutex_t	*forks;
 	t_philo	*p;
+	int		p_num;
 }			t_table;
 
 void	*to_do(void *p);
@@ -42,5 +49,6 @@ void	ph_sleep(t_philo *p);
 void	ph_died(t_philo *p);
 int		ft_atoi(char *n);
 long	ft_atol(char *n);
+void	init_time(t_philo *p, char *av[]);
 
 #endif
