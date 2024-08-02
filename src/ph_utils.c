@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 17:16:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 00:25:24 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 01:11:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_time(t_philo *p, char *av[])
 	p->t.to_die = ft_atol(av[2]);
 	p->t.to_eat = ft_atol(av[3]);
 	p->t.to_sleep = ft_atol(av[4]);
+	p->ta->eat = ft_atoi(av[5]);
 }
 
 void	take_forks(t_philo *p)

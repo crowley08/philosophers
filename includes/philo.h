@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 00:24:52 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 01:10:40 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_table
 	t_philo			*p;
 	pthread_mutex_t	*forks;
 	int				p_num;
+	int				eat;
 }					t_table;
 
 void	*to_do(void *p);

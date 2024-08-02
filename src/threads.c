@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:14:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 00:24:42 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 01:14:36 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ph_threads(t_table *table, char *av[])
 		i++;
 	}
 	free(table->p);
+	free(table->forks);
 	pthread_exit(NULL);
 }
 
