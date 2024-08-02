@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/01 13:42:55 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:59:05 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <sys/time.h>
+
+typedef struct s_table	t_table;
 
 typedef struct s_time
 {
@@ -32,15 +35,19 @@ typedef struct s_philo
 	pthread_mutex_t	mutex;
 	char			*stat;
 	int				id;
+	int				left_fork;
+	int				right_fork;
 	int				eaten;
+	t_table			*ta;
 	t_time			t;
 }					t_philo;
 
 typedef struct s_table
 {
-	t_philo	*p;
-	int		p_num;
-}			t_table;
+	t_philo			*p;
+	pthread_mutex_t	*forks;
+	int				p_num;
+}					t_table;
 
 void	*to_do(void *p);
 void	ph_think(t_philo *p);
@@ -50,5 +57,8 @@ void	ph_died(t_philo *p);
 int		ft_atoi(char *n);
 long	ft_atol(char *n);
 void	init_time(t_philo *p, char *av[]);
+void	print_stat(t_philo *p, int i, char *status);
+void	take_forks(t_philo *p);
+void	release_forks(t_philo *philo);
 
 #endif

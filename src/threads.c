@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:14:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/01 13:51:52 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:55:48 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	ph_threads(t_table *table, char *av[])
 	while (i < table->p_num)
 	{
 		pthread_mutex_init(&table->p[i].mutex, NULL);
+		pthread_mutex_init(&table->forks[i], NULL);
 		table->p[i].id = i + 1;
+		table->p[i].left_fork = i;
+		table->p[i].right_fork = (i + 1) % table->p_num;
+		table->p[i].ta = table;
 		i++;
 	}
 	i = 0;
@@ -35,6 +39,7 @@ void	ph_threads(t_table *table, char *av[])
 	{
 		pthread_join(table->p[i].threads, NULL);
 		pthread_mutex_destroy(&table->p[i].mutex);
+		pthread_mutex_destroy(&table->forks[i]);
 		i++;
 	}
 	free(table->p);
@@ -49,6 +54,7 @@ int	main(int ac, char *av[])
 	{
 		table.p_num = ft_atoi(av[1]);
 		table.p = malloc(sizeof(t_philo) * table.p_num);
+		table.forks = malloc(sizeof(pthread_mutex_t) * table.p_num);
 		ph_threads(&table, av);
 	}
 	return (0);
