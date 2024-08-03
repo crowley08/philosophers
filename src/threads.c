@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:14:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 05:49:05 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 06:53:47 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	init_table(t_table *table)
 		table->p[i].id = i + 1;
 		table->p[i].left = i;
 		table->p[i].right = (i + 1) % table->p_num;
-		table->p[i].ta = table;
 		table->p[i].eaten = 0;
 		table->start = get_time();
+		table->p[i].ta = table;
 		i++;
 	}
 }
