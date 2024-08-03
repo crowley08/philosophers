@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 06:01:38 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 06:04:18 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ typedef struct s_table
 	long long		start;
 }					t_table;
 
-void	*to_do(void *p);
-void	ph_think(t_philo *p);
-void	ph_eat(t_philo *p);
-void	ph_sleep(t_philo *p);
-void	ph_died(t_philo *p);
-int		ft_atoi(char *n);
-long	ft_atol(char *n);
-void	init_time(t_philo *p, char *av[]);
-void	print_stat(t_philo *p, int i, char *status);
-void	take_forks(t_philo *p);
-void	release_forks(t_philo *philo);
-void	init_table(t_table *table);
+void		*to_do(void *p);
+void		ph_think(t_philo *p);
+void		ph_eat(t_philo *p);
+void		ph_sleep(t_philo *p);
+void		ph_died(t_philo *p);
+int			ft_atoi(char *n);
+long		ft_atol(char *n);
+void		init_time(t_philo *p, char *av[]);
+void		print_stat(t_philo *p, int i, char *status);
+void		take_forks(t_philo *p);
+void		release_forks(t_philo *philo);
+void		init_table(t_table *table);
 long long	get_time(void);
 
 #endif
