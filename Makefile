@@ -1,4 +1,4 @@
-SRCS			=	src/routine.c src/threads.c src/ph_utils.c
+SRCS			=	src/routine.c src/threads.c src/ph_utils.c src/main.c
 OBJS			= $(SRCS:.c=.o)
 
 

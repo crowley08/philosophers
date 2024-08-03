@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 06:04:18 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 13:10:10 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void		take_forks(t_philo *p);
 void		release_forks(t_philo *philo);
 void		init_table(t_table *table);
 long long	get_time(void);
+void	ph_threads(t_table *table, char *av[]);
 
 #endif
