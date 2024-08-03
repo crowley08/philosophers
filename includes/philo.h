@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 05:50:50 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 06:01:38 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/time.h>
 
 typedef struct s_table	t_table;
+typedef struct s_philo	t_philo;
 
 typedef struct s_time
 {
