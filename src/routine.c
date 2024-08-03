@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 12:54:53 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 13:23:35 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	*to_do(void *p)
 	t_philo	*tid;
 
 	tid = (t_philo *)p;
-//	if (tid->id % 2 == 0)
-//		usleep(1000);
 	while (tid->eaten != tid->ta->eat)
 	{
 		ph_think(tid);
