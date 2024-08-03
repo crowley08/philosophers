@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 04:06:45 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 05:50:50 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_table
 	int				p_num;
 	int				eat;
 	long long		ts;
+	long long		start;
 }					t_table;
 
 void	*to_do(void *p);
@@ -63,5 +64,6 @@ void	print_stat(t_philo *p, int i, char *status);
 void	take_forks(t_philo *p);
 void	release_forks(t_philo *philo);
 void	init_table(t_table *table);
+long long	get_time(void);
 
 #endif

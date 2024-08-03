@@ -6,11 +6,19 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:14:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 04:11:04 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 05:49:05 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+long long	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
 
 void	init_table(t_table *table)
 {
@@ -24,6 +32,7 @@ void	init_table(t_table *table)
 		table->p[i].right = (i + 1) % table->p_num;
 		table->p[i].ta = table;
 		table->p[i].eaten = 0;
+		table->start = get_time();
 		i++;
 	}
 }
