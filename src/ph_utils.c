@@ -6,19 +6,11 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 17:16:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 01:11:37 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/03 04:11:14 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-void	init_time(t_philo *p, char *av[])
-{
-	p->t.to_die = ft_atol(av[2]);
-	p->t.to_eat = ft_atol(av[3]);
-	p->t.to_sleep = ft_atol(av[4]);
-	p->ta->eat = ft_atoi(av[5]);
-}
 
 void	take_forks(t_philo *p)
 {
@@ -26,19 +18,19 @@ void	take_forks(t_philo *p)
 	{
 		pthread_mutex_lock(&p->ta->forks[p->left]);
 		p->stat = "has taken a fork";
-		printf("\033[1;3m%d is %s\n\033[0m", p->id, p->stat);
+		printf("\033[1;3m%lld  %d is %s\n\033[0m", p->ta->ts, p->id, p->stat);
 		pthread_mutex_lock(&p->ta->forks[p->right]);
 		p->stat = "has taken a fork";
-		printf("\033[1;3m%d is %s\n\033[0m", p->id, p->stat);
+		printf("\033[1;3m%lld  %d is %s\n\033[0m", p->ta->ts, p->id, p->stat);
 	}
 	else
 	{
 		pthread_mutex_lock(&p->ta->forks[p->right]);
 		p->stat = "has taken a fork";
-		printf("\033[1;3m%d is %s\n\033[0m", p->id, p->stat);
+		printf("\033[1;3m%lld  %d is %s\n\033[0m", p->ta->ts, p->id, p->stat);
 		pthread_mutex_lock(&p->ta->forks[p->left]);
 		p->stat = "has taken a fork";
-		printf("\033[1;3m%d is %s\n\033[0m", p->id, p->stat);
+		printf("\033[1;3m%lld  %d is %s\n\033[0m", p->ta->ts, p->id, p->stat);
 	}
 }
 
