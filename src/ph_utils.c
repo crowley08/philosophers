@@ -6,11 +6,20 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 17:16:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 13:43:57 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:00:06 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+int	eaten_n_times(t_philo *p)
+{
+	pthread_mutex_lock(&p->ta->protec);
+	if (p->eaten != p->ta->eat)
+		return (pthread_mutex_unlock(&p->ta->protec), 1);
+	pthread_mutex_unlock(&p->ta->protec);
+	return (0);
+}
 
 void	take_forks(t_philo *p)
 {
@@ -18,26 +27,38 @@ void	take_forks(t_philo *p)
 	{
 		pthread_mutex_lock(&p->ta->forks[p->left]);
 		p->stat = "has taken a fork";
-		printf("\033[1;3m%lld  %d %s\n\033[0m", p->ta->ts, p->id, p->stat);
+		printf("%lld  %d %s\n", p->ts, p->id, p->stat);
 		pthread_mutex_lock(&p->ta->forks[p->right]);
 		p->stat = "has taken a fork";
-		printf("\033[1;3m%lld  %d %s\n\033[0m", p->ta->ts, p->id, p->stat);
+		printf("%lld  %d %s\n", p->ts, p->id, p->stat);
 	}
 	else
 	{
 		pthread_mutex_lock(&p->ta->forks[p->right]);
 		p->stat = "has taken a fork";
-		printf("\033[1;3m%lld  %d %s\n\033[0m", p->ta->ts, p->id, p->stat);
+		printf("%lld  %d %s\n", p->ts, p->id, p->stat);
 		pthread_mutex_lock(&p->ta->forks[p->left]);
 		p->stat = "has taken a fork";
-		printf("\033[1;3m%lld  %d %s\n\033[0m", p->ta->ts, p->id, p->stat);
+		printf("%lld  %d %s\n", p->ts, p->id, p->stat);
 	}
 }
 
-void	release_forks(t_philo *philo)
+void	release_forks(t_philo *p)
 {
-	pthread_mutex_unlock(&philo->ta->forks[philo->left]);
-	pthread_mutex_unlock(&philo->ta->forks[philo->right]);
+	/*
+	if (p->id % 2)
+	{
+		pthread_mutex_unlock(&p->ta->forks[p->left]);
+		pthread_mutex_unlock(&p->ta->forks[p->right]);
+	}
+	else
+	{
+		pthread_mutex_unlock(&p->ta->forks[p->right]);
+		pthread_mutex_unlock(&p->ta->forks[p->left]);
+	}
+	*/
+	pthread_mutex_unlock(&p->ta->forks[p->left]);
+	pthread_mutex_unlock(&p->ta->forks[p->right]);
 }
 
 int	ft_atoi(char *n)
