@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/06 13:12:42 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/06 13:38:39 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void	ph_died(t_philo *p)
 {
 	p->stat = "\033[1;91mdied";
 	print_stat(p);
+	exit(1);
 }
