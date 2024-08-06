@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 13:08:58 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 13:09:40 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/06 13:15:51 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int ac, char *av[])
 	{
 		table.p_num = ft_atoi(av[1]);
 		table.p = malloc(sizeof(t_philo) * table.p_num);
-		table.ts = 0;
 		table.forks = malloc(sizeof(pthread_mutex_t) * table.p_num);
 		ph_threads(&table, av);
 	}

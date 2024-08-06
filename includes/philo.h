@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/03 13:18:52 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/06 13:15:20 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@ typedef struct s_time
 typedef struct s_philo
 {
 	pthread_t		threads;
-	pthread_mutex_t	mutex;
 	char			*stat;
 	int				id;
 	int				left;
 	int				right;
+	int				eat;
 	int				eaten;
+	long long		ts;
 	t_table			*ta;
 	t_time			t;
 }					t_philo;
 
 typedef struct s_table
 {
+	pthread_mutex_t	mutex;
 	t_philo			*p;
 	pthread_mutex_t	*forks;
 	int				p_num;
-	int				eat;
-	long long		ts;
 	long long		start;
 }					t_table;
 
@@ -61,7 +61,7 @@ void		ph_died(t_philo *p);
 int			ft_atoi(char *n);
 long		ft_atol(char *n);
 void		init_time(t_philo *p, char *av[]);
-void		print_stat(t_philo *p, int i, char *status);
+void		print_stat(t_philo *p);
 void		take_forks(t_philo *p);
 void		release_forks(t_philo *philo);
 void		init_table(t_table *table);
