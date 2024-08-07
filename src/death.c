@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:44:07 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 12:07:32 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:06:18 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	is_dead(t_table *table)
 	table->one_is_dead = 1;
 	pthread_mutex_unlock(&table->dead);
 }
+
 int	no_one_died(t_table *table)
 {
 	pthread_mutex_lock(&table->dead);
@@ -39,11 +40,10 @@ int	check_death(t_table *table, int i)
 	if (time_diff > table->p[i].t.to_die)
 	{
 		is_dead(table);
-		pthread_mutex_lock(&table->dead);		
-		ph_died(&table->p[i]);
+		pthread_mutex_lock(&table->dead);
+		printf("\033[1;3m%lld  %d %s\n\033[0m", time - table->start,
+			table->p[i].id, "\033[1;91mdied");
 		pthread_mutex_unlock(&table->dead);
-	//	table->p[i].stat = "\033[1;91mdied";
-	//	print_stat(&table->p[i]);
 		return (1);
 	}
 	return (0);
@@ -60,7 +60,7 @@ void	*death_thread(void *t)
 		i = 0;
 		while (i < table->p_num)
 		{
-			if (check_death(table, i))
+			if (check_death(table, i) == 1)
 				break ;
 			i++;
 		}

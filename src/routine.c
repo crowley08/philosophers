@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 12:19:07 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:04:42 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,3 @@ void	ph_eat(t_philo *p)
 	p->eaten++;
 	usleep(p->t.to_eat * 1000);
 }
-void	ph_died(t_philo *p)
-{
-
-	p->stat = "\033[1;91mdied";
-	printf("\033[1;3m%lld  %d %s\n\033[0m", p->ts, p->id, p->stat);
-	clean_threads(p->ta);
-//	exit(1);
-}
-/*
-*/

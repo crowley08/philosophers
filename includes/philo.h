@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 12:46:56 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:04:34 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_table
 	t_philo			*p;
 	pthread_mutex_t	*forks;
 	int				p_num;
-//	int				*lock;
 	long long		start;
 	int				one_is_dead;
 }					t_table;
@@ -62,7 +61,6 @@ void		*to_do(void *p);
 void		ph_think(t_philo *p);
 void		ph_eat(t_philo *p);
 void		ph_sleep(t_philo *p);
-void		ph_died(t_philo *p);
 int			ft_atoi(char *n);
 long		ft_atol(char *n);
 void		init_time(t_philo *p, char *av[]);
@@ -80,7 +78,6 @@ void		is_dead(t_table *table);
 int			no_one_died(t_table *table);
 int			check_death(t_table *table, int i);
 void		*death_thread(void *t);
-void	clean_threads(t_table *table);
-void	unlock_mutex(t_table *table);
+void		clean_threads(t_table *table);
 
 #endif
