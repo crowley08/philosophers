@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/06 15:26:46 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:46:56 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ typedef struct s_philo	t_philo;
 
 typedef struct s_time
 {
-	long	to_die;
-	long	to_eat;
-	long	to_sleep;
+	long		to_die;
+	long		to_eat;
+	long		to_sleep;
+	long long	last_eat;
 }			t_time;
 
 typedef struct s_philo
@@ -46,11 +47,15 @@ typedef struct s_philo
 
 typedef struct s_table
 {
+	pthread_t		death_threads;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	dead;
 	t_philo			*p;
 	pthread_mutex_t	*forks;
 	int				p_num;
+//	int				*lock;
 	long long		start;
+	int				one_is_dead;
 }					t_table;
 
 void		*to_do(void *p);
@@ -63,7 +68,7 @@ long		ft_atol(char *n);
 void		init_time(t_philo *p, char *av[]);
 void		print_stat(t_philo *p);
 void		take_forks(t_philo *p);
-void		release_forks(t_philo *philo);
+void		release_forks(t_philo *p);
 void		init_table(t_table *table);
 long long	get_time(void);
 void		ph_threads(t_table *table, char *av[]);
@@ -71,5 +76,11 @@ void		init_forks(t_table *table);
 void		init_threads(t_table *table, char *av[]);
 void		join_threads(t_table *table);
 void		destroy_mutex(t_table *table);
+void		is_dead(t_table *table);
+int			no_one_died(t_table *table);
+int			check_death(t_table *table, int i);
+void		*death_thread(void *t);
+void	clean_threads(t_table *table);
+void	unlock_mutex(t_table *table);
 
 #endif

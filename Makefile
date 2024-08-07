@@ -1,10 +1,10 @@
-SRCS			=	src/routine.c src/threads.c src/ph_utils.c src/main.c src/thread_utils.c
+SRCS			=	src/routine.c src/threads.c src/ph_utils.c src/main.c src/thread_utils.c src/death.c
 OBJS			= $(SRCS:.c=.o)
 
 
 CC				= gcc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -g #-fsanitize=thread
+CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=thread
 
 NAME			= philo
 
