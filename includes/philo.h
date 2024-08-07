@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 14:04:34 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:40:20 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int			no_one_died(t_table *table);
 int			check_death(t_table *table, int i);
 void		*death_thread(void *t);
 void		clean_threads(t_table *table);
+void		ph_usleep(long ts);
 
 #endif

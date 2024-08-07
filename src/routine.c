@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 14:04:42 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:38:06 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ph_sleep(t_philo *p)
 {
 	p->stat = "\033[1;92mis sleeping";
 	print_stat(p);
-	usleep(p->t.to_sleep * 1000);
+	ph_usleep(p->t.to_sleep);
 }
 
 void	ph_eat(t_philo *p)
@@ -53,5 +53,5 @@ void	ph_eat(t_philo *p)
 	p->stat = "\033[1;95mis eating";
 	print_stat(p);
 	p->eaten++;
-	usleep(p->t.to_eat * 1000);
+	ph_usleep(p->t.to_eat);
 }

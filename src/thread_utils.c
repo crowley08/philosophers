@@ -6,11 +6,20 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:16:29 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 14:02:21 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:40:35 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	ph_usleep(long ts)
+{
+	long	start;
+
+	start = get_time();
+	while (get_time() - start < ts)
+		usleep(1);
+}
 
 void	join_threads(t_table *table)
 {
