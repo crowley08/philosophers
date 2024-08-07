@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 13:08:58 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 13:40:41 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:13:05 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char *av[])
 {
 	t_table		table;
 
-	if (ac == 6)
+	if (ac >= 5)
 	{
 		table.p_num = ft_atoi(av[1]);
 		table.p = malloc(sizeof(t_philo) * table.p_num);
