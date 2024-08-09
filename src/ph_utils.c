@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 17:16:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 13:27:18 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/09 09:35:32 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	release_forks(t_philo *p)
 	pthread_mutex_unlock(&p->ta->forks[p->right]);
 }
 
-int	ft_atoi(char *n)
+int	ph_atoi(char *n)
 {
 	int	i;
 	int	res;
@@ -74,7 +74,7 @@ int	ft_atoi(char *n)
 	return (res);
 }
 
-long	ft_atol(char *n)
+long	ph_atol(char *n)
 {
 	long	i;
 	long	res;
