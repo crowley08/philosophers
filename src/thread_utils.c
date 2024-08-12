@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:16:29 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/12 10:31:30 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:26:13 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	clean_threads(t_table *table)
 	destroy_mutex(table);
 	pthread_mutex_destroy(&table->dead);
 	pthread_mutex_destroy(&table->mutex);
+	free_all(table);
 }
 
 void	free_all(t_table *table)
