@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:00:56 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/12 11:15:19 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:22:22 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,7 @@ void	init_time(t_philo *p, char *av[])
 	p->t.to_eat = ph_atol(av[3]);
 	p->t.to_sleep = ph_atol(av[4]);
 	if (av[5])
-	{
 		p->eat = atoi_av(av[5]);
-		printf("%d\n", p->eat);
-	}
 	pthread_mutex_lock(&p->ta->mutex);
 	p->t.last_eat = p->ta->start;
 	pthread_mutex_unlock(&p->ta->mutex);
