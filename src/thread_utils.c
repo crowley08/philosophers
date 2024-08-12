@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:16:29 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/07 14:40:35 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:31:30 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,18 @@ void	join_threads(t_table *table)
 	int	i;
 
 	i = 0;
-	pthread_join(table->death_threads, NULL);
+	if (pthread_join(table->death_threads, NULL) != 0)
+	{
+		free_all(table);
+		return ;
+	}
 	while (i < table->p_num)
 	{
-		pthread_join(table->p[i].threads, NULL);
+		if (pthread_join(table->p[i].threads, NULL) != 0)
+		{
+			free_all(table);
+			return ;
+		}
 		i++;
 	}
 }
@@ -63,6 +71,10 @@ void	clean_threads(t_table *table)
 	destroy_mutex(table);
 	pthread_mutex_destroy(&table->dead);
 	pthread_mutex_destroy(&table->mutex);
+}
+
+void	free_all(t_table *table)
+{
 	free(table->p);
 	free(table->forks);
 }

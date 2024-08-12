@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:00:56 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/09 09:36:14 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:15:19 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,19 @@ void	init_threads(t_table *table, char *av[])
 		init_time(&table->p[i], av);
 		i++;
 	}
-	pthread_create(&table->death_threads, NULL, death_thread, table);
+	if (pthread_create(&table->death_threads, NULL, death_thread, table) != 0)
+	{
+		free_all(table);
+		return ;
+	}
 	i = 0;
 	while (i < table->p_num)
 	{
-		pthread_create(&table->p[i].threads, NULL, to_do, &table->p[i]);
+		if (pthread_create(&table->p[i].threads, NULL, to_do, &table->p[i]) != 0)
+		{
+			free_all(table);
+			return ;
+		}
 		i++;
 	}
 }
@@ -68,7 +76,10 @@ void	init_time(t_philo *p, char *av[])
 	p->t.to_eat = ph_atol(av[3]);
 	p->t.to_sleep = ph_atol(av[4]);
 	if (av[5])
-		p->eat = ph_atoi(av[5]);
+	{
+		p->eat = atoi_av(av[5]);
+		printf("%d\n", p->eat);
+	}
 	pthread_mutex_lock(&p->ta->mutex);
 	p->t.last_eat = p->ta->start;
 	pthread_mutex_unlock(&p->ta->mutex);

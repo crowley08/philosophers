@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 17:16:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/09 09:35:32 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:16:27 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ void	release_forks(t_philo *p)
 {
 	pthread_mutex_unlock(&p->ta->forks[p->left]);
 	pthread_mutex_unlock(&p->ta->forks[p->right]);
+}
+
+int	atoi_av(char *n)
+{
+	int	i;
+
+	i = 0;
+	if (n[i] == '[')
+	{
+		i++;
+		return(ph_atoi(n + i));
+	}
+	else
+		return (-1);
 }
 
 int	ph_atoi(char *n)
