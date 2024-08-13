@@ -6,25 +6,11 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:11:26 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 10:11:53 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:46:16 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-int	atoi_av(char *n)
-{
-	int	i;
-
-	i = 0;
-	if (n[i] == '[')
-	{
-		i++;
-		return (ph_atoi(n + i));
-	}
-	else
-		return (-1);
-}
 
 int	ph_atoi(char *n)
 {

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 10:03:38 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:46:23 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void		*death_thread(void *t);
 void		clean_threads(t_table *table);
 void		ph_usleep(long ts);
 void		free_all(t_table *table);
-int			atoi_av(char *n);
 void		*clear(t_table *table, char *s);
 
 #endif

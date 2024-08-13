@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 17:16:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 10:11:48 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:38:39 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ void	take_forks(t_philo *p)
 
 void	release_forks(t_philo *p)
 {
-	pthread_mutex_unlock(&p->ta->forks[p->left]);
-	pthread_mutex_unlock(&p->ta->forks[p->right]);
+	if (p->id % 2)
+	{
+		pthread_mutex_unlock(&p->ta->forks[p->left]);
+		pthread_mutex_unlock(&p->ta->forks[p->right]);
+	}
+	else
+	{
+		pthread_mutex_unlock(&p->ta->forks[p->right]);
+		pthread_mutex_unlock(&p->ta->forks[p->left]);
+	}
 }
