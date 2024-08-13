@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:11:26 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 10:53:19 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:43:34 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,40 @@ long	ph_atol(char *n)
 		i++;
 	}
 	return (res);
+}
+
+int	check_arg(char *s)
+{
+	int	i;
+
+	i = 0;
+	while ((s[i] >= 9 && s[i] <= 13) || s[i] == 32)
+		i++;
+	if (s[i] == '-' || s[i] == '+')
+	{
+		if (s[i] == '-')
+			return (-1);
+		i++;
+	}
+	while (s[i])
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	ph_isdigit(char *av[])
+{
+	int	i;
+
+	i = 1;
+	while (av[i])
+	{
+		if (check_arg(av[i]) <= 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }

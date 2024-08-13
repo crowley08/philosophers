@@ -6,16 +6,24 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 13:08:58 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 11:51:32 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:42:48 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+int	ph_error(char *error)
+{
+	printf("%s\n", error);
+	return (0);
+}
+
 int	main(int ac, char *av[])
 {
 	t_table		table;
 
+	if (ph_isdigit(av) == 0)
+		return (ph_error("invalid arguments!\n"), 0);
 	if (ac >= 5 && ac < 7)
 	{
 		table.p_num = ph_atoi(av[1]);

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 12:52:21 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:30:41 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,8 @@ void		*clear(t_table *table, char *s);
 int			check_ate(t_table *table);
 void		ph_ate(t_table *table);
 int			someone_didn_t_eat_yet(t_table *table);
+int			check_arg(char *s);
+int			ph_isdigit(char *av[]);
+int			ph_error(char *error);
 
 #endif
