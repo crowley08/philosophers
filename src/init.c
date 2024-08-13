@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:00:56 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 10:03:32 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:09:50 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void	*init_threads(t_table *table, char *av[])
 		init_time(&table->p[i], av);
 		i++;
 	}
-	if (pthread_create(&table->death_threads, NULL, death_thread, table) != 0)
+	if (pthread_create(&table->death_threads, NULL, death_thread, table))
 		return (clear(table, "Can't create death_threads"));
 	i = 0;
 	while (i < table->p_num)
 	{
-		if (pthread_create(&table->p[i].threads, NULL, to_do, &table->p[i]) != 0)
+		if (pthread_create(&table->p[i].threads, NULL, to_do, &table->p[i]))
 			return (clear(table, "can't create threads"));
 		i++;
 	}
