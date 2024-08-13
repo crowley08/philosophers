@@ -6,19 +6,23 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:16:29 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 12:51:47 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:35:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	ph_usleep(long ts)
+void	ph_usleep(long ts, t_table *table)
 {
 	long	start;
 
 	start = get_time();
 	while (get_time() - start < ts)
+	{
+		if (no_one_died(table) == 0 || someone_didn_t_eat_yet(table) == 0)
+			break ;
 		usleep(1);
+	}
 }
 
 void	*join_threads(t_table *table)

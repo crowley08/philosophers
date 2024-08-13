@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 12:56:17 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:37:29 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	*to_do(void *p)
 	while (no_one_died(table) && someone_didn_t_eat_yet(table))
 	{
 		ph_think(tid);
-		take_forks(p);
+		take_forks(tid);
 		ph_eat(tid);
-		release_forks(p);
+		release_forks(tid);
 		ph_sleep(tid);
 	}
 	return (NULL);
@@ -42,7 +42,7 @@ void	ph_sleep(t_philo *p)
 {
 	p->stat = "\033[1;92mis sleeping";
 	print_stat(p);
-	ph_usleep(p->t.to_sleep);
+	ph_usleep(p->t.to_sleep, p->ta);
 }
 
 void	ph_eat(t_philo *p)
@@ -55,5 +55,5 @@ void	ph_eat(t_philo *p)
 	pthread_mutex_lock(&p->ta->dead);
 	p->eaten++;
 	pthread_mutex_unlock(&p->ta->dead);
-	ph_usleep(p->t.to_eat);
+	ph_usleep(p->t.to_eat, p->ta);
 }

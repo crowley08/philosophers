@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 14:30:41 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:35:58 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			no_one_died(t_table *table);
 int			check_death(t_table *table, int i);
 void		*ph_monitor(void *t);
 void		clean_threads(t_table *table);
-void		ph_usleep(long ts);
+void		ph_usleep(long ts, t_table *table);
 void		free_all(t_table *table);
 void		*clear(t_table *table, char *s);
 int			check_ate(t_table *table);
