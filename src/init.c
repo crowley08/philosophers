@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:00:56 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/12 11:22:22 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:03:32 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_forks(t_table *table)
 	}
 }
 
-void	init_threads(t_table *table, char *av[])
+void	*init_threads(t_table *table, char *av[])
 {
 	int	i;
 
@@ -54,20 +54,15 @@ void	init_threads(t_table *table, char *av[])
 		i++;
 	}
 	if (pthread_create(&table->death_threads, NULL, death_thread, table) != 0)
-	{
-		free_all(table);
-		return ;
-	}
+		return (clear(table, "Can't create death_threads"));
 	i = 0;
 	while (i < table->p_num)
 	{
 		if (pthread_create(&table->p[i].threads, NULL, to_do, &table->p[i]) != 0)
-		{
-			free_all(table);
-			return ;
-		}
+			return (clear(table, "can't create threads"));
 		i++;
 	}
+	return (NULL);
 }
 
 void	init_time(t_philo *p, char *av[])

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/12 11:15:04 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:03:38 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void		init_table(t_table *table);
 long long	get_time(void);
 void		ph_threads(t_table *table, char *av[]);
 void		init_forks(t_table *table);
-void		init_threads(t_table *table, char *av[]);
-void		join_threads(t_table *table);
+void		*init_threads(t_table *table, char *av[]);
+void		*join_threads(t_table *table);
 void		destroy_mutex(t_table *table);
 void		is_dead(t_table *table);
 int			no_one_died(t_table *table);
@@ -82,5 +82,6 @@ void		clean_threads(t_table *table);
 void		ph_usleep(long ts);
 void		free_all(t_table *table);
 int			atoi_av(char *n);
+void		*clear(t_table *table, char *s);
 
 #endif
