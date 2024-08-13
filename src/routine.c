@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/09 09:41:07 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:56:17 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*to_do(void *p)
 	table = tid->ta;
 	if (tid->id % 2 == 0)
 		usleep(1000);
-	while (no_one_died(table))
+	while (no_one_died(table) && someone_didn_t_eat_yet(table))
 	{
 		ph_think(tid);
 		take_forks(p);
@@ -52,6 +52,8 @@ void	ph_eat(t_philo *p)
 	pthread_mutex_unlock(&p->ta->dead);
 	p->stat = "\033[1;95mis eating";
 	print_stat(p);
+	pthread_mutex_lock(&p->ta->dead);
 	p->eaten++;
+	pthread_mutex_unlock(&p->ta->dead);
 	ph_usleep(p->t.to_eat);
 }

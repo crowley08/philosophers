@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 17:16:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 10:53:18 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 13:04:52 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,25 @@ void	release_forks(t_philo *p)
 		pthread_mutex_unlock(&p->ta->forks[p->right]);
 		pthread_mutex_unlock(&p->ta->forks[p->left]);
 	}
+}
+
+void	*ph_monitor(void *t)
+{
+	t_table		*table;
+	int			i;
+
+	table = (t_table *)t;
+	while (table->one_is_dead == 0 && table->everyone_ate == 0)
+	{
+		i = 0;
+		if (check_ate(table))
+			break ;
+		while (i < table->p_num)
+		{
+			if (check_death(table, i))
+				break ;
+			i++;
+		}
+	}
+	return (NULL);
 }

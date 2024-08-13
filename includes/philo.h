@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 10:53:23 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:52:21 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ typedef struct s_philo
 	int				id;
 	int				left;
 	int				right;
-	int				eat;
 	int				eaten;
 	long long		ts;
 	t_table			*ta;
 	t_time			t;
+	int				eat;
 }					t_philo;
 
 typedef struct s_table
 {
-	pthread_t		death_threads;
+	pthread_t		monitor;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	dead;
 	t_philo			*p;
@@ -55,6 +55,7 @@ typedef struct s_table
 	int				p_num;
 	long long		start;
 	int				one_is_dead;
+	int				everyone_ate;
 }					t_table;
 
 void		*to_do(void *p);
@@ -67,7 +68,7 @@ void		init_time(t_philo *p, char *av[]);
 void		print_stat(t_philo *p);
 void		take_forks(t_philo *p);
 void		release_forks(t_philo *p);
-void		init_table(t_table *table);
+void		init_table(t_table *table, char *av[]);
 long long	get_time(void);
 void		ph_threads(t_table *table, char *av[]);
 void		init_forks(t_table *table);
@@ -77,10 +78,13 @@ void		destroy_mutex(t_table *table);
 void		is_dead(t_table *table);
 int			no_one_died(t_table *table);
 int			check_death(t_table *table, int i);
-void		*death_thread(void *t);
+void		*ph_monitor(void *t);
 void		clean_threads(t_table *table);
 void		ph_usleep(long ts);
 void		free_all(t_table *table);
 void		*clear(t_table *table, char *s);
+int			check_ate(t_table *table);
+void		ph_ate(t_table *table);
+int			someone_didn_t_eat_yet(t_table *table);
 
 #endif

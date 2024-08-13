@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 13:08:58 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 10:53:22 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:51:32 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int ac, char *av[])
 		table.p_num = ph_atoi(av[1]);
 		table.p = malloc(sizeof(t_philo) * table.p_num);
 		table.forks = malloc(sizeof(pthread_mutex_t) * table.p_num);
+		table.everyone_ate = 0;
 		if (!table.p || !table.forks)
 		{
 			free_all(&table);

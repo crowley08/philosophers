@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:16:29 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 11:12:03 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:51:47 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	*join_threads(t_table *table)
 	int	i;
 
 	i = 0;
-	if (pthread_join(table->death_threads, NULL))
-		return (clear(table, "can't join death_threads"));
+	if (pthread_join(table->monitor, NULL))
+		return (clear(table, "can't join monitor"));
 	while (i < table->p_num)
 	{
 		if (pthread_join(table->p[i].threads, NULL))

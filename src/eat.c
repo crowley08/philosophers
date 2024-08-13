@@ -1,50 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   death.c                                            :+:      :+:    :+:   */
+/*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 10:44:07 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 13:04:42 by saandria         ###   ########.fr       */
+/*   Created: 2024/08/13 13:03:53 by saandria          #+#    #+#             */
+/*   Updated: 2024/08/13 13:05:54 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	is_dead(t_table *table)
+void	ph_ate(t_table *table)
 {
 	pthread_mutex_lock(&table->dead);
-	table->one_is_dead = 1;
+	table->everyone_ate = 1;
 	pthread_mutex_unlock(&table->dead);
 }
 
-int	no_one_died(t_table *table)
+int	someone_didn_t_eat_yet(t_table *table)
 {
 	pthread_mutex_lock(&table->dead);
-	if (table->one_is_dead == 1)
+	if (table->everyone_ate == 1)
 		return (pthread_mutex_unlock(&table->dead), 0);
 	pthread_mutex_unlock(&table->dead);
 	return (1);
 }
 
-int	check_death(t_table *table, int i)
+int	check_ate(t_table *table)
 {
-	long long	time;
-	long long	time_diff;
+	int	i;
 
-	time = get_time();
-	pthread_mutex_lock(&table->dead);
-	time_diff = time - table->p[i].t.last_eat;
-	pthread_mutex_unlock(&table->dead);
-	if (time_diff > table->p[i].t.to_die)
+	i = 0;
+	while (i < table->p_num)
 	{
-		is_dead(table);
 		pthread_mutex_lock(&table->dead);
-		printf("\033[1;3m%lld  %d %s\n\033[0m", time - table->start,
-			table->p[i].id, "\033[1;91mdied");
+		if (table->p[i].eat == -1)
+			return (pthread_mutex_unlock(&table->dead), 0);
+		if (table->p[i].eat > table->p[i].eaten)
+			return (pthread_mutex_unlock(&table->dead), 0);
 		pthread_mutex_unlock(&table->dead);
-		return (1);
+		i++;
 	}
-	return (0);
+	ph_ate(table);
+	return (1);
 }
