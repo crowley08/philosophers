@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 16:01:40 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:35:36 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_table	t_table;
 typedef struct s_philo	t_philo;
 
+//time struct
 typedef struct s_time
 {
 	long		to_die;
@@ -31,6 +32,7 @@ typedef struct s_time
 	long long	last_eat;
 }			t_time;
 
+//philosophers struct
 typedef struct s_philo
 {
 	pthread_t		threads;
@@ -45,6 +47,7 @@ typedef struct s_philo
 	int				eat;
 }					t_philo;
 
+//table struct
 typedef struct s_table
 {
 	pthread_t		monitor;
