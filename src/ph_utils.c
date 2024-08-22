@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 17:16:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/22 11:23:16 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/22 16:22:55 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,52 +23,27 @@ void	print_stat(t_philo *p)
 	pthread_mutex_unlock(&p->ta->dead);
 }
 
-void	take_forks(t_philo *p)
-{
-	if (p->ta->p_num == 1)
-	{
-		pthread_mutex_lock(&p->ta->forks[p->left]);
-		p->stat = "has taken a fork";
-		print_stat(p);
-		ph_usleep(p->t.to_die, p->ta);
-		return ;
-	}
-	if (p->id % 2)
-	{
-		pthread_mutex_lock(&p->ta->forks[p->left]);
-		p->stat = "has taken a fork";
-		print_stat(p);
-		pthread_mutex_lock(&p->ta->forks[p->right]);
-		p->stat = "has taken a fork";
-		print_stat(p);
-	}
-	else
-	{
-		pthread_mutex_lock(&p->ta->forks[p->right]);
-		p->stat = "has taken a fork";
-		print_stat(p);
-		pthread_mutex_lock(&p->ta->forks[p->left]);
-		p->stat = "has taken a fork";
-		print_stat(p);
-	}
-}
-
 void	release_forks(t_philo *p)
 {
 	if (p->ta->p_num == 1)
 	{
-		pthread_mutex_unlock(&p->ta->forks[p->left]);
+		pthread_mutex_unlock(&p->ta->mutex_forks[p->left]);
+		p->ta->forks[p->left] = '1';
 		return ;
 	}
 	if (p->id % 2)
 	{
-		pthread_mutex_unlock(&p->ta->forks[p->left]);
-		pthread_mutex_unlock(&p->ta->forks[p->right]);
+		pthread_mutex_unlock(&p->ta->mutex_forks[p->left]);
+		p->ta->forks[p->left] = '1';
+		pthread_mutex_unlock(&p->ta->mutex_forks[p->right]);
+		p->ta->forks[p->right] = '1';
 	}
 	else
 	{
-		pthread_mutex_unlock(&p->ta->forks[p->right]);
-		pthread_mutex_unlock(&p->ta->forks[p->left]);
+		pthread_mutex_unlock(&p->ta->mutex_forks[p->right]);
+		p->ta->forks[p->right] = '1';
+		pthread_mutex_unlock(&p->ta->mutex_forks[p->left]);
+		p->ta->forks[p->left] = '1';
 	}
 }
 

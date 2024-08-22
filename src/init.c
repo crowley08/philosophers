@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:00:56 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 14:15:55 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:46:48 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_forks(t_table *table)
 	i = 0;
 	while (i < table->p_num)
 	{
-		pthread_mutex_init(&table->forks[i], NULL);
+		pthread_mutex_init(&table->mutex_forks[i], NULL);
 		i++;
 	}
 }

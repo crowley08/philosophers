@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:16:29 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/18 14:23:10 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:47:52 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	destroy_mutex(t_table *table)
 	i = 0;
 	while (i < table->p_num)
 	{
-		pthread_mutex_destroy(&table->forks[i]);
+		pthread_mutex_destroy(&table->mutex_forks[i]);
 		i++;
 	}
 }

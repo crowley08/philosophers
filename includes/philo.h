@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:18:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/16 14:35:36 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:52:00 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <string.h> 
 # include <sys/time.h>
 
-typedef struct s_table	t_table;
+typedef struct s_time	t_time;
 typedef struct s_philo	t_philo;
+typedef struct s_table	t_table;
 
 //time struct
 typedef struct s_time
@@ -30,7 +32,7 @@ typedef struct s_time
 	long		to_eat;
 	long		to_sleep;
 	long long	last_eat;
-}			t_time;
+}				t_time;
 
 //philosophers struct
 typedef struct s_philo
@@ -54,7 +56,8 @@ typedef struct s_table
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	dead;
 	t_philo			*p;
-	pthread_mutex_t	*forks;
+	pthread_mutex_t	*mutex_forks;
+	char			*forks;
 	int				p_num;
 	long long		start;
 	int				one_is_dead;
