@@ -6,11 +6,19 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:11:41 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/13 15:37:29 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/26 10:53:36 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static void	ph_one(t_philo *p)
+{
+	ph_think(p);
+	take_forks(p);
+	release_forks(p);
+	usleep(p->t.to_die);
+}
 
 void	*to_do(void *p)
 {
@@ -21,6 +29,11 @@ void	*to_do(void *p)
 	table = tid->ta;
 	if (tid->id % 2 == 0)
 		usleep(1000);
+	if (table->p_num == 1)
+	{
+		ph_one(tid);
+		return (NULL);
+	}
 	while (no_one_died(table) && someone_didn_t_eat_yet(table))
 	{
 		ph_think(tid);
