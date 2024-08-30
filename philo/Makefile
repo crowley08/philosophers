@@ -2,7 +2,7 @@ SRCS			=	src/routine.c src/threads.c src/ph_utils.c src/main.c src/thread_utils.
 OBJS			= $(SRCS:.c=.o)
 
 
-CC				= gcc
+CC				= cc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=thread
 
